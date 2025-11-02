@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ETICARET.Business\ETICARET.Business.csproj" />
     <ProjectReference Include="..\ETICARET.DataAccess\ETICARET.DataAccess.csproj" />
   </ItemGroup>
 
