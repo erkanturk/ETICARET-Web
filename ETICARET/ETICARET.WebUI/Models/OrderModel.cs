@@ -1,6 +1,6 @@
 ﻿namespace ETICARET.WebUI.Models
 {
-    public class OrderModel
+    public class OrderModel // ödeme servisi için gerekli
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -10,7 +10,7 @@
         public string Email { get; set; }
         public string? CardName { get; set; }
         public string? CardNumber { get; set; }
-        public string? ExprationMounth { get; set; }
+        public string? ExprationMonth { get; set; }
         public string? ExprationYear { get; set; }
         public string? CVV { get; set; }
         public string OrderNote { get; set; }

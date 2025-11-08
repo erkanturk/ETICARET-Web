@@ -18,6 +18,5 @@ namespace ETICARET.WebUI.Models
         [DataType(DataType.Password)]
         [Compare("Password")]
         public string RePassword { get; set; }
-
     }
 }

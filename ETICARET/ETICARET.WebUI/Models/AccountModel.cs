@@ -1,11 +1,10 @@
-﻿using ETICARET.WebUI.Identity;
-
-namespace ETICARET.WebUI.Models
+﻿namespace ETICARET.WebUI.Models
 {
-    public class AccountModel:ApplicationUser
+    public class AccountModel
     {
-        public string FullName { get; set; }
-        public string UserName { get; set; }
+        public int Id { get; set; }
+        public string FullName { get; set; }    
+        public string UserName { get; set; }    
         public string Email { get; set; }
     }
 }
