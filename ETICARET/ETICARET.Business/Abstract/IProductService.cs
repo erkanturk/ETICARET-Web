@@ -10,7 +10,7 @@ namespace ETICARET.Business.Abstract
     public interface IProductService
     {
         Product GetById(int id);
-        List<Product> GetProductByCategory(string category, int page, int pageSize);
+        List<Product> GetProductByCategory(string category,int page,int pageSize);
         List<Product> GetAll();
         Product GetProductDetail(int id);
         void Create(Product entity);

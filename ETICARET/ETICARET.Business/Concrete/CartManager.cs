@@ -11,60 +11,63 @@ namespace ETICARET.Business.Concrete
 {
     public class CartManager : ICartService
     {
-        private ICartDal _cartDal;//Veri erişim katmanı için bağımlılık
+        private ICartDal _cartDal;
+
         public CartManager(ICartDal cartDal)
         {
             _cartDal = cartDal;
         }
         public void AddToCart(string userId, int productId, int quantity)
         {
-            var cart = GetCartByUserId(userId);
-            if (cart is not null)
+            Cart cart = GetCartByUserId(userId);
+
+            if(cart is not null)
             {
-                var index = cart.CartItems.FindIndex(x => x.ProductId==productId);
-                if (index<0)
+                var index = cart.CartItems.FindIndex(x => x.ProductId == productId);
+
+                if (index < 0) // Eğer ürün sepette hiç yoksa sepete ürünü ekler
                 {
-                    cart.CartItems.Add(new CartItem()
+                    cart.CartItems.Add(new CartItem
                     {
                         ProductId = productId,
                         Quantity = quantity,
-                        CartId=cart.Id
-
+                        CartId = cart.Id
                     });
                 }
-                else
+                else // Eğer ürün sepette varsa sepetteki ürünün sayısını arttırır.
                 {
-                    cart.CartItems[index].Quantity+=quantity;
+                    cart.CartItems[index].Quantity += quantity;
                 }
             }
-            _cartDal.Update(cart);
+
+            _cartDal.Update(cart); // DataAccess aracılığıyla sepeti günceller
         }
 
-        public void ClearCart(string cartId)
+        public void ClearCart(int cartId)
         {
             _cartDal.ClearCart(cartId);
         }
 
         public void DeleteFromCart(string userId, int productId)
         {
-            var cart = GetCartByUserId(userId);
-            if (cart!=null)
-            {
-                _cartDal.DeleteFromCart(cart.Id, productId);
+            Cart cart = GetCartByUserId(userId);
+            if (cart is not null) {
+                _cartDal.DeleteFromCart(cart.Id,productId);
             }
         }
 
         public Cart GetCartByUserId(string userId)
         {
-           return _cartDal.GetCartByUserId(userId);
+            return _cartDal.GetCartByUserId(userId);
         }
 
         public void InitialCart(string userId)
         {
             Cart cart = new Cart()
             {
-                UserId = userId,
+                UserId = userId
             };
+
             _cartDal.Create(cart);
         }
     }

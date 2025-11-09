@@ -11,12 +11,11 @@ namespace ETICARET.DataAccess.Concrete.EfCore
 {
     public class EfCoreCartDal : EfCoreGenericRepository<Cart, DataContext>, ICartDal
     {
-        public void ClearCart(string cartId)
+        public void ClearCart(int cartId)
         {
-            using (var context = new DataContext())
-            {
-                var cmd = @"delete from CartItems where CartId=@p0";
-                context.Database.ExecuteSqlRaw(cmd, cartId);
+            using (var context = new DataContext()) {
+                var cmd = "delete from CartItem where CartId=@p0";
+                context.Database.ExecuteSqlRaw(cmd,cartId);
             }
         }
 
@@ -24,8 +23,8 @@ namespace ETICARET.DataAccess.Concrete.EfCore
         {
             using (var context = new DataContext())
             {
-                var cmd = @"delete from CartItems where CartId=@p0 and ProductId=@p1";
-                context.Database.ExecuteSqlRaw(cmd, cartId, productId);
+                var cmd = "delete from CartItem where CartId=@p0 and ProductId=@p1";
+                context.Database.ExecuteSqlRaw(cmd, cartId,productId);
             }
         }
 
@@ -34,10 +33,11 @@ namespace ETICARET.DataAccess.Concrete.EfCore
             using (var context = new DataContext())
             {
                 return context.Carts
-                    .Include(i => i.CartItems)
-                    .ThenInclude(i => i.Product)
-                    .ThenInclude(i => i.Images)
-                    .FirstOrDefault(i => i.UserId == userId);
+                        .Include(i => i.CartItems)
+                        .ThenInclude(i => i.Product)
+                        .ThenInclude(i => i.Images)
+                        .FirstOrDefault(i => i.UserId == userId);
+                        
             }
         }
 

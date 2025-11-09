@@ -11,10 +11,11 @@ namespace ETICARET.Business.Concrete
 {
     public class CategoryManager : ICategoryService
     {
-        private ICategoryDal _categoryDal;
+        private readonly ICategoryDal _categoryDal;
+
         public CategoryManager(ICategoryDal categoryDal)
         {
-            _categoryDal=categoryDal;
+            _categoryDal = categoryDal;
         }
         public void Create(Category entity)
         {
@@ -23,7 +24,7 @@ namespace ETICARET.Business.Concrete
 
         public void Delete(Category entity)
         {
-            _categoryDal.Delete(entity);
+           _categoryDal.Delete(entity);
         }
 
         public void DeleteFromCategory(int categoryId, int productId)
@@ -33,7 +34,7 @@ namespace ETICARET.Business.Concrete
 
         public List<Category> GetAll()
         {
-          return _categoryDal.GetAll();
+            return _categoryDal.GetAll();
         }
 
         public Category GetById(int id)
@@ -41,7 +42,7 @@ namespace ETICARET.Business.Concrete
             return _categoryDal.GetById(id);
         }
 
-        public Category GetByWithProducts(int id)
+        public Category GetByIdWithProducts(int id)
         {
             return _categoryDal.GetByIdWithProducts(id);
         }

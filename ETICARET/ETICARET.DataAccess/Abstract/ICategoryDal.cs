@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ETICARET.DataAccess.Abstract
 {
-    public interface ICategoryDal: IRepository<Category>
+    public interface ICategoryDal : IRepository<Category>
     {
-        void DeleteFromCategory(int categoryId, int productId);//Bir ürünü bir kategoriden silmek için kullanılan metot
-        Category GetByIdWithProducts(int id);//Kategori id sine göre kategoriyi ve o kategoriye ait ürünleri getiren metot
+        void DeleteFromCategory(int categoryId,int productId);
+        Category GetByIdWithProducts(int id);
     }
 }

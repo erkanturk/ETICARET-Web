@@ -11,7 +11,8 @@ namespace ETICARET.Business.Concrete
 {
     public class OrderManager : IOrderService
     {
-        private IOrderDal _orderDal;
+        private readonly IOrderDal _orderDal;
+
         public OrderManager(IOrderDal orderDal)
         {
             _orderDal = orderDal;
@@ -23,7 +24,7 @@ namespace ETICARET.Business.Concrete
 
         public List<Order> GetOrders(string userId)
         {
-           return _orderDal.GetOrders(userId);
+            return _orderDal.GetOrders(userId);
         }
     }
 }
