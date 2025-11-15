@@ -8,24 +8,23 @@ using System.Threading.Tasks;
 
 namespace ETICARET.DataAccess.Concrete.EfCore
 {
-    public class DataContext : DbContext
+    public class DataContext: DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=202-HOCAPC;Database=ETICARET;uid=sa;pwd=1;TrustServerCertificate=True");
-        }
+            optionsBuilder.UseSqlServer(@"Server=OGRETMEN\MSSQLSERVER01;Database=ETICARET;uid=sa;pwd=1;TrustServerCertificate=true");
 
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //birleşik anahtar tanımlıyoruz ProductId ve CategoryId Birlikte Eşsiz anahtarlar
             modelBuilder.Entity<ProductCategory>().HasKey(c => new { c.ProductId, c.CategoryId });
         }
-
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<CartItem> CartItem { get; set; }
         public DbSet<Order> Orders { get; set; }
     }
 }

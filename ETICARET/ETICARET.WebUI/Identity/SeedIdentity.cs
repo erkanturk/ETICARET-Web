@@ -10,25 +10,22 @@ namespace ETICARET.WebUI.Identity
             var password = configuration["Data:AdminUser:password"];
             var email = configuration["Data:AdminUser:email"];
             var role = configuration["Data:AdminUser:role"];
-
-            if(await userManager.FindByEmailAsync(email) == null)
+            if (await userManager.FindByEmailAsync(email)==null)
             {
                 await roleManager.CreateAsync(new IdentityRole(role));
-
                 var user = new ApplicationUser()
                 {
                     UserName = username,
                     Email = email,
-                    FullName = "Tahsin Canpolat",
-                    EmailConfirmed = true
+                    FullName="Erkan Türk",
+                    EmailConfirmed = true,
                 };
-
                 var result = await userManager.CreateAsync(user,password);
-
                 if (result.Succeeded)
                 {
-                    await userManager.AddToRoleAsync(user,role);
+                    await userManager.AddToRoleAsync(user, role);
                 }
+
             }
         }
     }

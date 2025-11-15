@@ -10,5 +10,4 @@ namespace ETICARET.WebUI.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
-
 }
