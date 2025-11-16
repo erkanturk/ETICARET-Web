@@ -41,7 +41,7 @@ namespace ETICARET.Entities
 
     public enum EnumPaymentTypes
     {
-       CreditCard = 0,
-       Eft = 1
+        CreditCard = 0,
+        Eft = 1
     }
 }
