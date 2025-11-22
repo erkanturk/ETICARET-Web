@@ -175,7 +175,7 @@ namespace ETICARET.WebUI.Controllers
                         SaveOrder(model, payment, userId);
 
                         // Sepeti temizle
-                        ClearCart(cart.Id);
+                        ClearCart(cart.Id.ToString());
 
                         // Başarı mesajı
                         TempData.Put("message", new ResultModel()
@@ -202,7 +202,7 @@ namespace ETICARET.WebUI.Controllers
                     // Kredi kartıyla ödeme yok, direkt siparişi kaydediyoruz
                     SaveOrder(model, userId);
                     // Sepeti temizliyoruz
-                    ClearCart(cart.Id);
+                    ClearCart(cart.Id.ToString());
 
                     // Başarı mesajı
                     TempData.Put("message", new ResultModel()
@@ -222,7 +222,7 @@ namespace ETICARET.WebUI.Controllers
         /// Sepeti (cart) temizler.
         /// </summary>
         /// <param name="id">Temizlenecek sepetin ID değeri</param>
-        private void ClearCart(int id)
+        private void ClearCart(string id)
         {
             _cartService.ClearCart(id);
         }

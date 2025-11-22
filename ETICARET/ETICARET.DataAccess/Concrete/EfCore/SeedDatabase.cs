@@ -9,29 +9,30 @@ using System.Threading.Tasks;
 namespace ETICARET.DataAccess.Concrete.EfCore
 {
     public class SeedDatabase
-    {
+    {    // Örnek verileri veritabanına ekleyen metod
         public static void Seed()
         {
             var context = new DataContext();
 
-
+            // Eğer bekleyen migration'lar yoksa (veritabanı güncelse)
             if (context.Database.GetPendingMigrations().Count() == 0)
             {
+                // Eğer kategoriler yoksa, varsayılan kategorileri ekle
                 if (context.Categories.Count() == 0)
                 {
                     context.AddRange(Categories);
                 }
 
+                // Eğer ürünler yoksa, varsayılan ürünleri ve ürün kategorilerini ekle
                 if (context.Products.Count() == 0)
                 {
                     context.AddRange(Products);
                     context.AddRange(ProductCategories);
                 }
 
-                context.SaveChanges();
+                context.SaveChanges(); // Değişiklikleri kaydet
             }
         }
-
         private static Category[] Categories =
         {
             new Category(){ Name = "Telefon"},
@@ -70,33 +71,7 @@ namespace ETICARET.DataAccess.Concrete.EfCore
             new Product(){ Name = "Kendwood KATLE " , Price = 3000, Images = { new Image() {ImageUrl = "katle.jpg" },  new Image() {ImageUrl = "katle.jpg" }, new Image() {ImageUrl = "katle.jpg" }, new Image() {ImageUrl = "katle.jpg" } },Description ="<p>Kaliteli Katle</p>" },
             new Product(){ Name = "Tencere " , Price = 3000, Images = { new Image() {ImageUrl = "TencereSeti1.jpg" },  new Image() {ImageUrl = "TencereSeti2.jpg" }, new Image() {ImageUrl = "TencereSeti3.jpg" }, new Image() {ImageUrl = "TencereSeti4.jpg" } },Description ="<p>Tencere Seti</p>" },
             new Product(){ Name = "Logitech " , Price = 3500, Images = { new Image() {ImageUrl = "Logitech3.jpg" },  new Image() {ImageUrl = "Logitech2.jpg" }, new Image() {ImageUrl = "Logitech1.jpg" }, new Image() {ImageUrl = "Logitech.jpg" } },Description ="<p>Hocanın Mousu</p>" },
-            new Product(){ Name = "Dell Monitör " , Price = 22000, Images = { new Image() {ImageUrl = "Dell.jpg" },  new Image() {ImageUrl = "Dell1.jpg" }, new Image() {ImageUrl = "Dell2.jpg" }, new Image() {ImageUrl = "Dell3.jpg" } },Description ="<p>Efsane Monitör</p>" }, 
-            new Product(){ Name ="İphone 17 256 Lavanta" , Price = 88499, Images ={ new Image() { ImageUrl = "apple17.jpg" },new Image () { ImageUrl = "apple.17.jpg" }, new Image() {ImageUrl = "apple.17.1.jpg"},new Image() {ImageUrl ="apple..17.jpg" } },Description = "<p>İphone 17 Lavanta Rengi </p>"},
-            new Product(){ Name ="İphone 15 256 Pembe" , Price = 46990, Images ={ new Image() { ImageUrl = "apple15.jpg" },new Image () { ImageUrl = "apple15.jpg" }, new Image() {ImageUrl = "apple.15.jpg"},new Image() {ImageUrl ="apple..15.jpg" } },Description = " <p>İphone 15 </p>"},
-            new Product(){ Name ="İphone 15 256 Pembe" , Price = 46990, Images ={ new Image() { ImageUrl = "apple15.jpg" },new Image () { ImageUrl = "apple15.jpg" }, new Image() {ImageUrl = "apple.15.jpg"},new Image() {ImageUrl ="apple..15.jpg" } },Description = " <p>İphone 15 </p>"},
-            new Product(){ Name ="İphone 16 Pro Max Çöl Titanyumu" , Price = 1099999, Images ={ new Image() { ImageUrl = "apple16max.jpg" },new Image () { ImageUrl = "apple16.max.jpg" }, new Image() {ImageUrl = "apple.16max.jpg"},new Image() {ImageUrl ="apple.16.max.jpg" } },Description = " <p>İphone 16 Pro Max 512GB Çöl Titanyumu </p>"},
-             new Product(){ Name ="İphone 16" , Price = 59999, Images ={ new Image() { ImageUrl = "apple16.jpg" },new Image () { ImageUrl = "apple16..jpg" }, new Image() {ImageUrl = "apple.16.jpg"},new Image() {ImageUrl ="apple16...jpg" } },Description = " <p>İphone 16 128GB Deniz Mavisi </p>"},
-             new Product(){ Name ="İphone 17 Pro Max Abis" , Price = 123999, Images ={ new Image() { ImageUrl = "apple17pro.jpg" },new Image () { ImageUrl = "apple17.pro.jpg" }, new Image() {ImageUrl = "apple.17..jpg"},new Image() {ImageUrl ="apple17pro...jpg" } },Description = " <p>İphone 17 256GB Abis </p>"},
-             new Product(){ Name ="Dell Inspiron Bilgisayar" , Price = 23999, Images ={ new Image() { ImageUrl = "dell.jpg" },new Image () { ImageUrl = "dell.1.jpg" }, new Image() {ImageUrl = "dell..jpg"},new Image() {ImageUrl ="dell1.jpg" } },Description = " <p>Dell Inspiron 15 3530 13.Nesil Core i5 1334U-16GB Ssd-15-6inc-W11 </p>"},
-             new Product(){ Name ="MacBook Air" , Price = 74999, Images ={ new Image() { ImageUrl = "macbook.mc7.jpg" },new Image () { ImageUrl = "macbook.mc.7.jpg" }, new Image() {ImageUrl = "macbook.mc7.jpg"},new Image() {ImageUrl ="macbookmc.jpg" } },Description = " <p>MacBook Air MC7D4TU/A M4 24GB-512GB Ssd-Liquid Retina -15-3 inc-GökMavisi </p>"},
-             new Product(){ Name ="Lenova LOQ Bilgisayar " , Price = 84999, Images ={ new Image() { ImageUrl = "lenova.1.jpg" },new Image () { ImageUrl = "Lenova.1...jpg" }, new Image() {ImageUrl = "lenova.1..jpg"},new Image() {ImageUrl ="Lenova1.jpg" } },Description = " <p>Lenova LOQ 13.Nesil Core i7 13650HX-RTX5070 8GB-24GB-1TB Ssd-15-6-W11 </p>"},
-             new Product(){ Name =" Msi Thin 15 13.Nesil" , Price = 43079, Images ={ new Image() { ImageUrl = "msı.jpg" },new Image () { ImageUrl = "msı1.jpg" }, new Image() {ImageUrl = "msı1..jpg"},new Image() {ImageUrl ="msı..jpg" } },Description = " <p>Msı Thin 15 13.Nesil Core i5 13420H-RTX4050 6Gb-512 Gb Ssd-15.6inc-W11 </p>"},
-              new Product(){ Name ="Huawei Matebook" , Price = 24999, Images ={ new Image() { ImageUrl = "huawei.jpg" },new Image () { ImageUrl = "huawei1.jpg" }, new Image() {ImageUrl = "huawei..jpg"},new Image() {ImageUrl ="huawei.1.jpg" } },Description = " <p>Bilgisayar </p>"},
-             new Product(){ Name ="Philips LatteGo" , Price = 24999, Images ={ new Image() { ImageUrl = "kahve.jpg" },new Image () { ImageUrl = "kahve1.jpg" }, new Image() {ImageUrl = "kahve.1.jpg"},new Image() {ImageUrl ="kahve..jpg" } },Description = " <p>Tam Otomatik Espresso Makinesi </p>"},
-             new Product(){ Name ="Arzum Çay Sefası" , Price = 4199, Images ={ new Image() { ImageUrl = "çaycı.jpg" },new Image () { ImageUrl = "çaycı..jpg" }, new Image() {ImageUrl = "çaycıı.jpg"},new Image() {ImageUrl ="Çaycı.1.jpg" } },Description = " <p>Çaycı </p>"},
-              new Product(){ Name ="Roborock" , Price = 23999, Images ={ new Image() { ImageUrl = "robot.sü.jpg" },new Image () { ImageUrl = "robot.süp.jpg" }, new Image() {ImageUrl = "robot.süpü.jpg"},new Image() {ImageUrl ="robo.jpg" } },Description = " <p>İphone 17 256GB Abis </p>"},
-             new Product(){ Name ="Philips Ütü" , Price = 6499, Images ={ new Image() { ImageUrl = "philips.jpg" },new Image () { ImageUrl = "philipps.jpg" }, new Image() {ImageUrl = "philipss.jpg"},new Image() { ImageUrl ="philips"} },Description = " <p>İphone 17 256GB Abis </p>"},
-             new Product(){ Name ="Canon Fotograf Makinesi" , Price = 42699, Images ={ new Image() { ImageUrl = "canon.jpg" },new Image () { ImageUrl = "canon...jpg" }, new Image() {ImageUrl = "canon.1.jpg"},new Image() {ImageUrl ="Canoon.jpg" } },Description = " <p> Güzel Fotoğraf Makinesi </p>"},
-              new Product(){ Name ="İphone 17 Pro Max Abis" , Price = 123999, Images ={ new Image() { ImageUrl = "apple17pro.jpg" },new Image () { ImageUrl = "apple17.pro.jpg" }, new Image() {ImageUrl = "apple.17..jpg"},new Image() {ImageUrl ="apple17pro...jpg" } },Description = " <p>İphone 17 256GB Abis </p>"},
-              new Product(){ Name ="Tefal İkili Tava" , Price = 1899, Images ={ new Image() { ImageUrl = "tefaal.jpg" },new Image () { ImageUrl = "tefaall.jpg" }, new Image() {ImageUrl = "tefal.jpg"},new Image() {ImageUrl ="tefall.jpg" } },Description = " <p>Çeyizlerin Gözdesi </p>"},
-              new Product(){ Name ="Stanley Termos 0.47L" , Price = 1382, Images ={ new Image() { ImageUrl = "stanley.jpg" },new Image () { ImageUrl = "stannley.jpg" }, new Image() {ImageUrl = "stanleey.jpg"},new Image() {ImageUrl ="ter.jpg" } },Description = " <p>Termoslar Şahı</p>"},
-
-
-
-
-
-
-
+            new Product(){ Name = "Dell Monitör " , Price = 22000, Images = { new Image() {ImageUrl = "Dell.jpg" },  new Image() {ImageUrl = "Dell1.jpg" }, new Image() {ImageUrl = "Dell2.jpg" }, new Image() {ImageUrl = "Dell3.jpg" } },Description ="<p>Efsane Monitör</p>" }
 
         };
 
@@ -129,27 +104,7 @@ namespace ETICARET.DataAccess.Concrete.EfCore
             new ProductCategory(){ Product = Products[24],Category=Categories[3]},
             new ProductCategory(){ Product = Products[25],Category=Categories[3]},
             new ProductCategory(){ Product = Products[26],Category=Categories[3]},
-            new ProductCategory(){ Product = Products[27],Category=Categories[3]},
-            new ProductCategory(){ Product = Products[28],Category=Categories[0]},
-            new ProductCategory(){ Product = Products[29],Category=Categories[0]},
-            new ProductCategory(){ Product = Products[30],Category=Categories[0]},
-            new ProductCategory(){ Product = Products[31],Category=Categories[0]},
-            new ProductCategory(){ Product = Products[32],Category=Categories[0]},
-            new ProductCategory(){ Product = Products[33],Category=Categories[1]},
-            new ProductCategory(){ Product = Products[34],Category=Categories[1]},
-            new ProductCategory(){ Product = Products[35],Category=Categories[1]},
-            new ProductCategory(){ Product = Products[36],Category=Categories[1]},
-            new ProductCategory(){ Product = Products[37],Category=Categories[1]},
-            new ProductCategory(){ Product = Products[38],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[39],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[40],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[41],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[42],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[43],Category=Categories[2]},
-            new ProductCategory(){ Product = Products[44],Category=Categories[3]},
-            new ProductCategory(){ Product = Products[45],Category=Categories[3]},
-
-
+            new ProductCategory(){ Product = Products[27],Category=Categories[3]}
         };
     }
 }

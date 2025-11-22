@@ -87,7 +87,7 @@ namespace ETICARET.WebUI.Controllers
                 string body = $"Hesabınızı onaylayınız. <br> <br> Lütfen email hesabını onaylamak için linke <a href='{activeUrl}'> tıklayınız.</a>";
 
                 // Email gönderme işlemi
-                MailHelper.SendMail(body, model.Email, "ETİCARET Hesap Aktifleştirme Onayı");
+                MailHelper.SendEmail(body, model.Email, "ETİCARET Hesap Aktifleştirme Onayı");
 
                 // Başarılıysa Login sayfasına yönlendirir
                 return RedirectToAction("Login", "Account");
@@ -317,7 +317,7 @@ namespace ETICARET.WebUI.Controllers
             string body = $"Parolanızı yenilemek için linke <a href='{activeUrl}'> tıklayınız.</a>";
 
             // Email gönderme işlemi
-            MailHelper.SendMail(body, email, "ETİCARET Parola Yenileme");
+            MailHelper.SendEmail(body, email, "ETİCARET Parola Yenileme");
 
             // Kullanıcıya bilgi mesajı
             TempData.Put("message", new ResultModel()
@@ -489,7 +489,7 @@ namespace ETICARET.WebUI.Controllers
 
                 // Kullanıcıya email gönderilir
                 string body = $"Şifrenizi yenilemek için linke <a href='{resetUrl}'> tıklayınız.</a>";
-                MailHelper.SendMail(body, model.Email, "ETRADE Şifre Sıfırlama");
+                MailHelper.SendEmail(body, model.Email, "ETRADE Şifre Sıfırlama");
 
                 TempData.Put("message", new ResultModel()
                 {
