@@ -13,7 +13,7 @@ namespace ETICARET.DataAccess.Concrete.EfCore
         // Veritabanı bağlantı ayarlarını yapılandırır.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-8K37I5K;Database=ETICARET;uid=sa;pwd=1;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=OGRETMEN\MSSQLSERVER01;Database=ETICARET;uid=sa;pwd=1;TrustServerCertificate=True");
         }
 
         // Veritabanındaki ilişkileri ve kuralları belirler.
